@@ -16,7 +16,7 @@
 </head>
 <body class="easyui-layout">
         <div data-options="region:'north',title:'标题',split:true" style="height:100px;">
-            <h1>金科员工管理系统</h1>
+            <center><h1>金科商城后台管理系统</h1></center>
         </div>
         <div data-options="region:'west',title:'导航菜单',split:true" style="width:150px;">
             <ul id="menu-tree"></ul>

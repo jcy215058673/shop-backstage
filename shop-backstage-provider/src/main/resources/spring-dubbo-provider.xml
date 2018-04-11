@@ -29,4 +29,8 @@
    <!-- dubbo端口号 -->  
    <dubbo:protocol name="dubbo" port="20880" ></dubbo:protocol>
    <dubbo:service interface="com.jk.service.ITreeService" ref="treeService"></dubbo:service>
+   <dubbo:service interface="com.jk.service.ISpecificationService" ref="specificationService"></dubbo:service>
+	<dubbo:service timeout="12000"  interface="com.jk.service.PeisongService" ref="peisongService"></dubbo:service>
+	<dubbo:service timeout="12000"  interface="com.jk.service.ZhifuService" ref="zhifuService"></dubbo:service>
+	<dubbo:service timeout="12000"  interface="com.jk.service.DelicoService" ref="delicoService"></dubbo:service>
  </beans>

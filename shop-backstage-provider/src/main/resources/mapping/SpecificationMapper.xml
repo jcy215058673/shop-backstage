@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.SpecificationMapper">
+  <resultMap id="BaseResultMap" type="com.jk.model.Specification" >
+    <id column="id" property="id" />
+    <result column="NAME" property="name"  />
+    <result column="TYPE" property="type"  />
+    <result column="ORDERS" property="orders"  />
+    <collection property="specificationValues" ofType="com.jk.model.SpecificationValue">
+      <result column="SVNAME" property="svname" />
+    </collection>
+  </resultMap>
+  <select id="querySpecificationTotal" resultType="long">
+      select count(*) from xx_specification
+  </select>
+  <!-- 查询当前页数据 -->
+  <select id="querySpecificationList" resultMap="BaseResultMap">
+    select * from
+      (select t.* from
+        (select xs.*,rownum r from xx_specification xs where rownum &lt;= #{rows}) t where r&gt;= #{start}) a
+          left join xx_specification_value xv on a.id = xv.specification
+  </select>
+</mapper>

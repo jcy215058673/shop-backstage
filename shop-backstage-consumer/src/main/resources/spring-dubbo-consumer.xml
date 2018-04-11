@@ -29,4 +29,8 @@
        
      <!-- 生成远程服务代理，可以和本地bean一样使用demoService，该interface需要与服务端暴露的服务interface保持一致，该id已注入Spring -->    
 	 <dubbo:reference id="treeService" interface="com.jk.service.ITreeService" />
+	 <dubbo:reference id="specificationService" interface="com.jk.service.ISpecificationService" />
+	<dubbo:reference id="peisongService" interface="com.jk.service.PeisongService" />
+	<dubbo:reference id="zhifuService" interface="com.jk.service.ZhifuService" />
+	<dubbo:reference id="delicoService" interface="com.jk.service.DelicoService" />
 </beans>

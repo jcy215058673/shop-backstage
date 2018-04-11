@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.PeisongMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Peisong" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="ORDERS" property="orders" jdbcType="DECIMAL" />
+    <result column="CONTINUE_PRICE" property="continuePrice" jdbcType="DECIMAL" />
+    <result column="CONTINUE_WEIGHT" property="continueWeight" jdbcType="DECIMAL" />
+    <result column="FIRST_PRICE" property="firstPrice" jdbcType="DECIMAL" />
+    <result column="FIRST_WEIGHT" property="firstWeight" jdbcType="DECIMAL" />
+    <result column="ICON" property="icon" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="DEFAULT_DELIVERY_CORP" property="defaultDeliveryCorp" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jk.model.Peisong" extends="BaseResultMap" >
+    <result column="DESCRIPTION" property="description" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREATE_DATE, MODIFY_DATE, ORDERS, CONTINUE_PRICE, CONTINUE_WEIGHT, FIRST_PRICE,
+    FIRST_WEIGHT, ICON, NAME, DEFAULT_DELIVERY_CORP
+  </sql>
+  <sql id="Blob_Column_List" >
+    DESCRIPTION
+  </sql>
+  <!--XX_SHIPPING_METHOD_SEQUENCE.nextval-->
+  <!--查询-->
+  <select id="peisongList" parameterType="com.jk.model.Peisong" resultMap="BaseResultMap">
+    select * from XX_SHIPPING_METHOD
+  </select>
+
+  <!--  批量删除 -->
+  <delete id="deleteShopByIDs" parameterType="java.lang.Integer" >
+    delete from XX_SHIPPING_METHOD
+    where id
+    <foreach item="it" separator="," close=")" open="in (" collection="list"> #{it}</foreach>
+  </delete>
+
+  <!--新增-->
+  <insert id="insertPeisong" parameterType="com.jk.model.Peisong" >
+    insert into XX_SHIPPING_METHOD (ID, CREATE_DATE, MODIFY_DATE,
+    ORDERS, CONTINUE_PRICE, CONTINUE_WEIGHT,
+    FIRST_PRICE, FIRST_WEIGHT, ICON,
+    NAME, DEFAULT_DELIVERY_CORP, DESCRIPTION
+    )
+    values (SEQ_SHOP_ID1.nextval, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP},
+    #{orders,jdbcType=DECIMAL}, #{continuePrice,jdbcType=DECIMAL}, #{continueWeight,jdbcType=DECIMAL},
+    #{firstPrice,jdbcType=DECIMAL}, #{firstWeight,jdbcType=DECIMAL}, #{icon,jdbcType=VARCHAR},
+    #{name,jdbcType=VARCHAR}, #{defaultDeliveryCorp,jdbcType=DECIMAL}, #{description,jdbcType=CLOB}
+    )
+  </insert>
+  <!--<insert id="insertPeisong" parameterType="com.jk.model.Peisong" >
+    insert into XX_SHIPPING_METHOD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="modifyDate != null" >
+        MODIFY_DATE,
+      </if>
+      <if test="orders != null" >
+        ORDERS,
+      </if>
+      <if test="continuePrice != null" >
+        CONTINUE_PRICE,
+      </if>
+      <if test="continueWeight != null" >
+        CONTINUE_WEIGHT,
+      </if>
+      <if test="firstPrice != null" >
+        FIRST_PRICE,
+      </if>
+      <if test="firstWeight != null" >
+        FIRST_WEIGHT,
+      </if>
+      <if test="icon != null" >
+        ICON,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="defaultDeliveryCorp != null" >
+        DEFAULT_DELIVERY_CORP,
+      </if>
+      <if test="description != null" >
+        DESCRIPTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=DECIMAL},
+      </if>
+      <if test="continuePrice != null" >
+        #{continuePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueWeight != null" >
+        #{continueWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="firstPrice != null" >
+        #{firstPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="firstWeight != null" >
+        #{firstWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultDeliveryCorp != null" >
+        #{defaultDeliveryCorp,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>-->
+  <!--   回显 -->
+  <select id="toEditShopById" resultMap="BaseResultMap" parameterType="com.jk.model.Peisong" >
+    select
+    <include refid="Base_Column_List" />
+    from XX_SHIPPING_METHOD
+    where id = #{id,jdbcType=DECIMAL}
+  </select>
+  <!--修改-->
+  <update id="updatePeisongById" parameterType="com.jk.model.Peisong" >
+    update XX_SHIPPING_METHOD
+    <set >
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orders != null" >
+        ORDERS = #{orders,jdbcType=DECIMAL},
+      </if>
+      <if test="continuePrice != null" >
+        CONTINUE_PRICE = #{continuePrice,jdbcType=DECIMAL},
+      </if>
+      <if test="continueWeight != null" >
+        CONTINUE_WEIGHT = #{continueWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="firstPrice != null" >
+        FIRST_PRICE = #{firstPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="firstWeight != null" >
+        FIRST_WEIGHT = #{firstWeight,jdbcType=DECIMAL},
+      </if>
+      <if test="icon != null" >
+        ICON = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="defaultDeliveryCorp != null" >
+        DEFAULT_DELIVERY_CORP = #{defaultDeliveryCorp,jdbcType=DECIMAL},
+      </if>
+      <if test="description != null" >
+        DESCRIPTION = #{description,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

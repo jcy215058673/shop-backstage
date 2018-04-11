@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ZhifuMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Zhifu" >
+    <id column="ZID" property="zid" jdbcType="DECIMAL" />
+    <result column="ZCREATE_DATE" property="zcreateDate" jdbcType="TIMESTAMP" />
+    <result column="ZMODIFY_DATE" property="zmodifyDate" jdbcType="TIMESTAMP" />
+    <result column="ZORDERS" property="zorders" jdbcType="DECIMAL" />
+    <result column="ZDESCRIPTION" property="zdescription" jdbcType="VARCHAR" />
+    <result column="ZICON" property="zicon" jdbcType="VARCHAR" />
+    <result column="ZMETHOD" property="zmethod" jdbcType="DECIMAL" />
+    <result column="ZNAME" property="zname" jdbcType="VARCHAR" />
+    <result column="ZTIMEOUT" property="ztimeout" jdbcType="DECIMAL" />
+    <result column="PEIID" property="peiid" jdbcType="DECIMAL" />
+    <result column="NAME" property="peiname" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jk.model.Zhifu" extends="BaseResultMap" >
+    <result column="CONTENT" property="content" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ZID, ZCREATE_DATE, ZMODIFY_DATE, ZORDERS, ZDESCRIPTION, ZICON, ZMETHOD, ZNAME, ZTIMEOUT, NAME peiname
+  </sql>
+  <sql id="Blob_Column_List" >
+    CONTENT
+  </sql>
+  <!--查询-->
+  <select id="zhifuList" parameterType="com.jk.model.Zhifu" resultMap="BaseResultMap">
+    select * from XX_PAYMENT_METHOD z,XX_SHIPPING_METHOD p where z.peiid=p.id
+  </select>
+  <!--  批量删除 -->
+  <delete id="deleteShopByIDss" parameterType="java.lang.Integer" >
+    delete from XX_PAYMENT_METHOD
+    where zid
+    <foreach item="it" separator="," close=")" open="in (" collection="list"> #{it}</foreach>
+  </delete>
+  <!--新增-->
+  <insert id="insertZhifu" parameterType="com.jk.model.Zhifu" >
+    insert into XX_PAYMENT_METHOD (ZID, ZCREATE_DATE, ZMODIFY_DATE,
+    ZORDERS, ZDESCRIPTION, ZICON,
+    ZMETHOD, ZNAME, ZTIMEOUT,
+    PEIID, ZCONTENT)
+    values (SEQ_SHOP_ID.nextval, #{zcreateDate,jdbcType=TIMESTAMP}, #{zmodifyDate,jdbcType=TIMESTAMP},
+    #{zorders,jdbcType=DECIMAL}, #{zdescription,jdbcType=VARCHAR}, #{zicon,jdbcType=VARCHAR},
+    #{zmethod,jdbcType=DECIMAL}, #{zname,jdbcType=VARCHAR}, #{ztimeout,jdbcType=DECIMAL},
+    #{peiid,jdbcType=DECIMAL}, #{zcontent,jdbcType=CLOB})
+  </insert>
+  <!--<insert id="insertZhifu" parameterType="com.jk.model.Zhifu" >
+    insert into XX_PAYMENT_METHOD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="zid != null" >
+        ZID,
+      </if>
+      <if test="zcreateDate != null" >
+        ZCREATE_DATE,
+      </if>
+      <if test="zmodifyDate != null" >
+        ZMODIFY_DATE,
+      </if>
+      <if test="zorders != null" >
+        ZORDERS,
+      </if>
+      <if test="zdescription != null" >
+        ZDESCRIPTION,
+      </if>
+      <if test="zicon != null" >
+        ZICON,
+      </if>
+      <if test="zmethod != null" >
+        ZMETHOD,
+      </if>
+      <if test="zname != null" >
+        ZNAME,
+      </if>
+      <if test="ztimeout != null" >
+        ZTIMEOUT,
+      </if>
+      <if test="peiid != null" >
+        PEIID,
+      </if>
+      <if test="zcontent != null" >
+        ZCONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="zid != null" >
+        #{zid,jdbcType=DECIMAL},
+      </if>
+      <if test="zcreateDate != null" >
+        #{zcreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zmodifyDate != null" >
+        #{zmodifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zorders != null" >
+        #{zorders,jdbcType=DECIMAL},
+      </if>
+      <if test="zdescription != null" >
+        #{zdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="zicon != null" >
+        #{zicon,jdbcType=VARCHAR},
+      </if>
+      <if test="zmethod != null" >
+        #{zmethod,jdbcType=DECIMAL},
+      </if>
+      <if test="zname != null" >
+        #{zname,jdbcType=VARCHAR},
+      </if>
+      <if test="ztimeout != null" >
+        #{ztimeout,jdbcType=DECIMAL},
+      </if>
+      <if test="peiid != null" >
+        #{peiid,jdbcType=DECIMAL},
+      </if>
+      <if test="zcontent != null" >
+        #{zcontent,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>-->
+  <!--   回显 -->
+  <select id="toEditZhifu" resultMap="BaseResultMap" parameterType="com.jk.model.Zhifu" >
+    select
+    <include refid="Base_Column_List" />
+    from XX_PAYMENT_METHOD z,XX_SHIPPING_METHOD p where z.peiid=p.id
+    and zid = #{zid,jdbcType=DECIMAL}
+  </select>
+  <update id="updateZhifuById" parameterType="com.jk.model.Zhifu" >
+    update XX_PAYMENT_METHOD
+    <set >
+      <if test="zcreateDate != null" >
+        ZCREATE_DATE = #{zcreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zmodifyDate != null" >
+        ZMODIFY_DATE = #{zmodifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zorders != null" >
+        ZORDERS = #{zorders,jdbcType=DECIMAL},
+      </if>
+      <if test="zdescription != null" >
+        ZDESCRIPTION = #{zdescription,jdbcType=VARCHAR},
+      </if>
+      <if test="zicon != null" >
+        ZICON = #{zicon,jdbcType=VARCHAR},
+      </if>
+      <if test="zmethod != null" >
+        ZMETHOD = #{zmethod,jdbcType=DECIMAL},
+      </if>
+      <if test="zname != null" >
+        ZNAME = #{zname,jdbcType=VARCHAR},
+      </if>
+      <if test="ztimeout != null" >
+        ZTIMEOUT = #{ztimeout,jdbcType=DECIMAL},
+      </if>
+      <if test="peiid != null" >
+        PEIID = #{peiid,jdbcType=DECIMAL},
+      </if>
+      <if test="zcontent != null" >
+        ZCONTENT = #{zcontent,jdbcType=CLOB},
+      </if>
+    </set>
+    where ZID = #{zid,jdbcType=DECIMAL}
+  </update>
+</mapper>

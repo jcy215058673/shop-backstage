@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.DelicoMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Delico" >
+    <id column="WID" property="wid" jdbcType="DECIMAL" />
+    <result column="WCREATE_DATE" property="wcreateDate" jdbcType="TIMESTAMP" />
+    <result column="WMODIFY_DATE" property="wmodifyDate" jdbcType="TIMESTAMP" />
+    <result column="WORDERS" property="worders" jdbcType="DECIMAL" />
+    <result column="WCODE" property="wcode" jdbcType="VARCHAR" />
+    <result column="WNAME" property="wname" jdbcType="VARCHAR" />
+    <result column="WURL" property="wurl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    WID, WCREATE_DATE, WMODIFY_DATE, WORDERS, WCODE, WNAME, WURL
+  </sql>
+  <select id="delicoList" parameterType="com.jk.model.Delico" resultMap="BaseResultMap">
+    select * from XX_DELIVERY_CORP
+  </select>
+  <!--  批量删除 -->
+  <delete id="deleteShopByIDs" parameterType="java.lang.Integer" >
+    delete from XX_DELIVERY_CORP
+    where wid
+    <foreach item="it" separator="," close=")" open="in (" collection="list"> #{it}</foreach>
+  </delete>
+  <insert id="insertDelico" parameterType="com.jk.model.Delico" >
+    insert into XX_DELIVERY_CORP (WID, WCREATE_DATE, WMODIFY_DATE, 
+      WORDERS, WCODE, WNAME, 
+      WURL)
+    values (SQL_SHOP_ID2.nextval, #{wcreateDate,jdbcType=TIMESTAMP}, #{wmodifyDate,jdbcType=TIMESTAMP},
+      #{worders,jdbcType=DECIMAL}, #{wcode,jdbcType=VARCHAR}, #{wname,jdbcType=VARCHAR}, 
+      #{wurl,jdbcType=VARCHAR})
+  </insert>
+  <!--   回显 -->
+  <select id="toEditShopById" resultMap="BaseResultMap" parameterType="com.jk.model.Delico" >
+    select
+    <include refid="Base_Column_List" />
+    from XX_DELIVERY_CORP
+    where wid = #{wid,jdbcType=DECIMAL}
+  </select>
+  <update id="updateDelicoById" parameterType="com.jk.model.Delico" >
+    update XX_DELIVERY_CORP
+    <set >
+      <if test="wcreateDate != null" >
+        WCREATE_DATE = #{wcreateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="wmodifyDate != null" >
+        WMODIFY_DATE = #{wmodifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="worders != null" >
+        WORDERS = #{worders,jdbcType=DECIMAL},
+      </if>
+      <if test="wcode != null" >
+        WCODE = #{wcode,jdbcType=VARCHAR},
+      </if>
+      <if test="wname != null" >
+        WNAME = #{wname,jdbcType=VARCHAR},
+      </if>
+      <if test="wurl != null" >
+        WURL = #{wurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where WID = #{wid,jdbcType=DECIMAL}
+  </update>
+</mapper>

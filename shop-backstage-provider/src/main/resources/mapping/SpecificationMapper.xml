@@ -20,4 +20,20 @@
         (select xs.*,rownum r from xx_specification xs where rownum &lt;= #{rows}) t where r&gt;= #{start}) a
           left join xx_specification_value xv on a.id = xv.specification
   </select>
+  <!--删除-->
+  <delete id="pldelSpecification">
+    delete xx_specification where id = #{id}
+  </delete>
+  <!--添加规格表数据-->
+  <insert id="addSpecification">
+      insert into xx_specification(id,createdate,orders,memo,name,type) values(#{id},sysdate,#{orders},#{memo},#{name},#{type})
+  </insert>
+  <!--添加规格值表数据-->
+  <insert id="addSpecificationValue">
+      insert into xx_specification_value(id,createdate,svorders,svname,specification) values(SYS_GUID(),sysdate,#{svorders},#{svname},#{specification})
+  </insert>
+  <!--删除规格值表对应的数据-->
+  <delete id="pldelSpecificationValue">
+      delete xx_specification_value where specification = #{specification}
+  </delete>
 </mapper>

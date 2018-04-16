@@ -33,4 +33,21 @@
 	<dubbo:service timeout="12000"  interface="com.jk.service.PeisongService" ref="peisongService"></dubbo:service>
 	<dubbo:service timeout="12000"  interface="com.jk.service.ZhifuService" ref="zhifuService"></dubbo:service>
 	<dubbo:service timeout="12000"  interface="com.jk.service.DelicoService" ref="delicoService"></dubbo:service>
+	<dubbo:service interface="com.jk.service.OrderService" ref="orderService"></dubbo:service>
+	<dubbo:service interface="com.jk.service.RefundsService" ref="refundsService"></dubbo:service>
+	<dubbo:service interface="com.jk.service.DepositService" ref="depositService"></dubbo:service>
+	<dubbo:service interface="com.jk.service.ShippingService" ref="shippingService"></dubbo:service>
+	<dubbo:service interface="com.jk.service.IDeliverytemplateService" ref="deliverytemplateService"></dubbo:service>
+	<dubbo:service interface="com.jk.service.IDeliverycenterService" ref="deliverycenterService"></dubbo:service>
+	<dubbo:service interface="com.jk.service.IAreaService" ref="areaService"></dubbo:service>
+	<dubbo:service interface="com.jk.service.ShopService" ref="shopservice"></dubbo:service>
+	<dubbo:service interface="com.jk.service.HyzcService" ref="hyzcservice"></dubbo:service>
+	<dubbo:service timeout="12000" interface="com.jk.service.PaymentService" ref="paymentService"></dubbo:service>
+	<dubbo:service  timeout="12000" interface="com.jk.service.AdminService" ref="adminService"></dubbo:service>
+	<dubbo:service  timeout="12000" interface="com.jk.service.RoleService" ref="roleService"></dubbo:service>
+	<dubbo:service timeout="12000"  interface="com.jk.service.ProductService" ref="productService"></dubbo:service>
+	<dubbo:service timeout="12000"  interface="com.jk.service.ProductCateguryService" ref="productCateguryService"></dubbo:service>
+	<dubbo:service timeout="12000"  interface="com.jk.service.ProductParameterService" ref="productParameterService"></dubbo:service>
+	<dubbo:service timeout="12000"  interface="com.jk.service.ProductAttributeService" ref="productAttributeService"></dubbo:service>
+	<dubbo:service timeout="12000"  interface="com.jk.service.ProductParameterGroupService" ref="productParameterGroupService"></dubbo:service>
  </beans>

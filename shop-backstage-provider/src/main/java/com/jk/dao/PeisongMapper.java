@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface PeisongMapper {
 
-    public List<Peisong> peisongList();
+    public List<Peisong> peisongList(Peisong peisong);
 
     public void deleteShopByIDs(List<Integer> list);
 

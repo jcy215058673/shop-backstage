@@ -19,8 +19,8 @@ public class ZhifuServiceImpl implements ZhifuService{
     private ZhifuMapper zhifumapper;
 
     @Override
-    public List<Zhifu> zhifuList() {
-        List<Zhifu> zhifuList = zhifumapper.zhifuList();
+    public List<Zhifu> zhifuList(Zhifu zhifu) {
+        List<Zhifu> zhifuList = zhifumapper.zhifuList(zhifu);
         return zhifuList;
     }
 

@@ -21,8 +21,8 @@ public class PeisongServiceImpl implements PeisongService{
 
     //查询
     @RequestMapping("peisongList")
-    public List<Peisong> peisongList() {
-        List<Peisong> peisongList = peisongmapper.peisongList();
+    public List<Peisong> peisongList(Peisong peisong) {
+        List<Peisong> peisongList = peisongmapper.peisongList(peisong);
         return peisongList;
     }
 

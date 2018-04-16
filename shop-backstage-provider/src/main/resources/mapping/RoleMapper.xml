@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Role" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createDate"/>
+    <result column="MODIFYDATE" property="modifyDate"/>
+    <result column="DESCRIPTION" property="description" jdbcType="VARCHAR" />
+    <result column="ISSYSTEM" property="isSystem" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <!-- 查询总条数 -->
+ <!-- <select id="queryTotals" resultType="long">
+    select count(*) from XX_role
+    &lt;!&ndash; 名字模糊查询 &ndash;&gt;
+
+  </select>-->
+
+  <select id="roleList" resultType="com.jk.model.Role">
+ select * from XX_role
+  </select>
+
+
+
+ <!-- <select id="roleList" resultType="com.jk.model.Role" resultMap="BaseResultMap" >
+
+
+
+
+
+
+    select 
+    *
+    from XX_Role
+  </select>-->
+  <delete id="deleteShopByIDs" parameterType="java.lang.Integer" >
+    delete from XX_role
+    where id
+    <foreach item="it" separator="," close=")" open="in (" collection="list"> #{it}</foreach>
+  </delete>
+  <insert id="insertRole" >
+    insert into XX_role (ID,CREATE_DATE,MODIFY_DATE,DESCRIPTION,IS_SYSTEM,NAME)
+     values (SEQ_ID.nextval,to_date(#{createDate},'yyyy-mm-dd hh24:mi:ss'),to_date(#{modifyDate},'yyyy-mm-dd hh24:mi:ss'),
+      #{description}, #{isSystem}, #{name}
+      )
+  </insert>
+
+
+
+    <update id="updateRoleById">
+    update XX_ROLE
+    set
+    MODIFY_DATE =to_date(#{modifyDate},'yyyy-mm-dd hh24:mi:ss'),
+    DESCRIPTION = #{description},
+    IS_SYSTEM = #{isSystem},
+    NAME = #{name}
+    where ID = #{id}
+  </update>
+
+</mapper>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.OrderMapper">
+
+  <resultMap id="BaseResultMap" type="com.jk.model.Order" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATEDATE" property="createdate" jdbcType="VARCHAR" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="AMOUNT_PAID" property="amountPaid" jdbcType="DECIMAL" />
+    <result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+    <result column="CONSIGNEE" property="consignee" jdbcType="VARCHAR" />
+    <result column="COUPON_DISCOUNT" property="couponDiscount" jdbcType="DECIMAL" />
+    <result column="EXPIRE" property="expire" jdbcType="VARCHAR" />
+    <result column="INVOICE_TITLE" property="invoiceTitle" jdbcType="VARCHAR" />
+    <result column="LOCK_EXPIRE" property="lockExpire" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="OFFSET_AMOUNT" property="offsetAmount" jdbcType="DECIMAL" />
+    <result column="ORDER_STATUS" property="orderStatus" jdbcType="DECIMAL" />
+    <result column="PAYMENTMETHODNAME" property="paymentmethodname" jdbcType="VARCHAR" />
+    <result column="PAYMENT_STATUS" property="paymentStatus" jdbcType="DECIMAL" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="POINT" property="point" jdbcType="DECIMAL" />
+    <result column="PROMOTION" property="promotion" jdbcType="VARCHAR" />
+    <result column="SHIPPINGMETHODNAME" property="shippingmethodname" jdbcType="VARCHAR" />
+    <result column="SHIPPING_STATUS" property="shippingStatus" jdbcType="DECIMAL" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="TAX" property="tax" jdbcType="DECIMAL" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="AREA" property="area" jdbcType="DECIMAL" />
+    <result column="COUPON_CODE" property="couponCode" jdbcType="DECIMAL" />
+    <result column="MEMBER" property="member" jdbcType="DECIMAL" />
+    <result column="OPERATOR" property="operator" jdbcType="DECIMAL" />
+    <result column="PAYMENT_METHOD" property="paymentMethod" jdbcType="DECIMAL" />
+    <result column="SHIPPING_METHOD" property="shippingMethod" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, CREATEDATE, MODIFY_DATE, ADDRESS, AMOUNT_PAID, AREA_NAME, CONSIGNEE, COUPON_DISCOUNT,
+    EXPIRE, INVOICE_TITLE, LOCK_EXPIRE, MEMO, OFFSET_AMOUNT, ORDER_STATUS, PAYMENTMETHODNAME,
+    PAYMENT_STATUS, PHONE, POINT, PROMOTION, SHIPPINGMETHODNAME, SHIPPING_STATUS, SN,
+    TAX, ZIP_CODE, AREA, COUPON_CODE, MEMBER, OPERATOR, PAYMENT_METHOD, SHIPPING_METHOD
+  </sql>
+
+
+<select id="orderList" parameterType="com.jk.model.Order" resultMap="BaseResultMap">
+   select * from
+  (select a.*,rownum rn from
+  (select * from xx_order) a
+  )
+  where rn between #{page} and #{rows}
+  <if test="order.consignee!=null and order.consignee!=''">
+    and CONSIGNEE = #{order.consignee}
+  </if>
+    </select>
+
+
+   <!--查询-->
+  <!--<select id="orderList"  resultMap="BaseResultMap" parameterType="com.jk.model.Order">
+    select * from xx_order WHERE 1=1
+    <if test="order.consignee!=null and order.consignee!=''">
+      and consignee = #{order.consignee,jdbcType=VARCHAR}
+    </if>
+  </select>-->
+<!-- 查看-->
+  <select id="queryorder"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from xx_order WHERE ID = #{ff}
+  </select>
+
+  <update id="updateorder" parameterType="com.jk.model.Order">
+    update xx_order set
+     MEMBER = #{member,jdbcType=DECIMAL},
+     CONSIGNEE = #{consignee,jdbcType=VARCHAR},
+     PAYMENTMETHODNAME = #{paymentmethodname,jdbcType=VARCHAR},
+     ORDER_STATUS = #{orderStatus,jdbcType=DECIMAL},
+     PAYMENT_STATUS = #{paymentStatus,jdbcType=DECIMAL},
+     SHIPPING_STATUS = #{shippingStatus,jdbcType=DECIMAL},
+    CREATEDATE = #{createdate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <delete id="deletreorder" parameterType="java.lang.Integer">
+    delete from xx_order
+    where ID in
+    <foreach collection="ff" item="hh" index="index" open="(" separator="," close=")">
+      ${hh}
+    </foreach>
+  </delete>
+
+  <!--   回显 -->
+  <!-- <select id="Toupdorderhui" resultMap="BaseResultMap" parameterType="com.jk.model.Order" >
+     select * from xx_order
+     where SN = #{sn,jdbcType=VARCHAR}
+   </select>-->
+</mapper>

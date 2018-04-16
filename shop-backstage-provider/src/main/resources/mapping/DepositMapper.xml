@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.DepositMapper">
+
+  <resultMap id="BaseResultMap" type="com.jk.model.Deposit" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR" />
+    <result column="BALANCE" property="balance" jdbcType="DECIMAL" />
+    <result column="CREDIT" property="credit" jdbcType="DECIMAL" />
+    <result column="DEBIT" property="debit" jdbcType="DECIMAL" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+    <result column="MEMBER" property="member" jdbcType="DECIMAL" />
+    <result column="ORDERS" property="orders" jdbcType="DECIMAL" />
+    <result column="PAYMENT" property="payment" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREATE_DATE, MODIFY_DATE, BALANCE, CREDIT, DEBIT, MEMO, OPERATOR, TYPE, MEMBER,
+    ORDERS, PAYMENT
+  </sql>
+
+
+<select id="depositList" parameterType="com.jk.model.Deposit" resultMap="BaseResultMap">
+   select * from
+  (select a.*,rownum rn from
+  (select * from xx_deposit) a
+  )
+  where rn between #{page} and #{rows}
+  <!--<if test="order.consignee!=null and order.consignee!=''">
+    and CONSIGNEE = #{order.consignee}
+  </if>-->
+    </select>
+
+
+  <!-- 查看-->
+  <select id="qquerydeposit"  resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    select * from xx_deposit WHERE ID = #{ff}
+  </select>
+</mapper>

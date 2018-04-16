@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jk.dao.RefundsMapper">
+
+  <resultMap id="BaseResultMap" type="com.jk.model.Refunds" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="BANK" property="bank" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="METHOD" property="method" jdbcType="DECIMAL" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="PAYEE" property="payee" jdbcType="VARCHAR" />
+    <result column="PAYMENTMETHOD" property="paymentmethod" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="ORDERS" property="orders" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREATE_DATE, MODIFY_DATE, ACCOUNT, AMOUNT, BANK, MEMO, METHOD, OPERATOR, PAYEE,
+    PAYMENTMETHOD, SN, ORDERS
+  </sql>
+
+
+ <select id="refundsList2" resultMap="BaseResultMap" parameterType="com.jk.model.Refunds" >
+    select *  from XX_REFUNDS
+  </select>
+
+  <!--分页查询-->
+
+ <!-- <select id="refundsTiao" parameterType="com.jk.model.Refunds" resultMap="BaseResultMap">
+    select * from XX_REFUNDS
+    (select a.*,rownum rn from
+    (select * from XX_REFUNDS) a
+    )
+    where rn between #{page} and #{rows}
+
+  </select>-->
+
+
+               <!-- 查看-->
+  <select id="refundsList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from XX_REFUNDS
+    where ID = #{theid}
+  </select>
+
+
+  <insert id="addrefunds" parameterType="com.jk.model.Refunds" >
+    insert into XX_REFUNDS (ID, METHOD, PAYMENTMETHOD,
+    AMOUNT,PAYEE,CREATE_DATE)
+
+    values (xx_returns_sequence.nextval,#{method,jdbcType=DECIMAL},#{paymentmethod,jdbcType=VARCHAR},
+    #{amount,jdbcType=DECIMAL},#{payee,jdbcType=VARCHAR},
+    #{createDate,jdbcType=VARCHAR}
+    )
+  </insert>
+
+  <update id="updrefunds" parameterType="com.jk.model.Refunds" >
+    update XX_REFUNDS
+    set METHOD = #{method,jdbcType=DECIMAL},
+    PAYMENTMETHOD = #{paymentmethod,jdbcType=VARCHAR},
+    AMOUNT = #{amount,jdbcType=DECIMAL},
+    PAYEE = #{payee,jdbcType=VARCHAR},
+    CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+
+  <delete id="deletrefunds" parameterType="java.lang.Integer">
+    delete from XX_REFUNDS
+    where ID in
+    <foreach collection="ff" item="hh" index="index" open="(" separator="," close=")">
+      ${hh}
+    </foreach>
+  </delete>
+
+
+  <!--<delete id="deletrefunds">
+    delete from xx_refunds
+    where sn in
+    <foreach collection="ff" item="hh" index="index" open="(" separator="," close=")">
+      ${hh}
+    </foreach>
+  </delete>-->
+
+</mapper>

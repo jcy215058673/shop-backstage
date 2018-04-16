@@ -26,6 +26,12 @@
   <!--查询-->
   <select id="zhifuList" parameterType="com.jk.model.Zhifu" resultMap="BaseResultMap">
     select * from XX_PAYMENT_METHOD z,XX_SHIPPING_METHOD p where z.peiid=p.id
+
+    <if test="zname != null and zname != ''">
+      and z.ZNAME like '%'||#{zname}||'%'
+    </if>
+
+
   </select>
   <!--  批量删除 -->
   <delete id="deleteShopByIDss" parameterType="java.lang.Integer" >

@@ -14,7 +14,19 @@
     WID, WCREATE_DATE, WMODIFY_DATE, WORDERS, WCODE, WNAME, WURL
   </sql>
   <select id="delicoList" parameterType="com.jk.model.Delico" resultMap="BaseResultMap">
-    select * from XX_DELIVERY_CORP
+   <!-- select * from XX_DELIVERY_CORP where 1=1
+
+    <if test="wname != null and wname != ''">
+      and WNAME like '%'||#{wname}||'%'
+    </if>
+-->
+
+    select * from(select a.*,rownum rn from(select * from XX_DELIVERY_CORP) a)
+    where rn between #{page} and #{rows}
+    <if test="delico.wname != null and delico.wname != ''">
+      and WNAME like '%'||#{delico.wname}||'%'
+    </if>
+
   </select>
   <!--  批量删除 -->
   <delete id="deleteShopByIDs" parameterType="java.lang.Integer" >

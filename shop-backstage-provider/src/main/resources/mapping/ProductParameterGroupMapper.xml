@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ProductParameterGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.ProductParameterGroup" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="ORDERS" property="orders" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PRODUCT_CATEGORY" property="productCategory" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insert" parameterType="com.jk.model.ProductParameterGroup" >
+    insert into XX_PARAMETER_GROUP (ID, CREATE_DATE, MODIFY_DATE, 
+      ORDERS, NAME, PRODUCT_CATEGORY
+      )
+    values (#{id,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{orders,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{productCategory,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.ProductParameterGroup" >
+    insert into XX_PARAMETER_GROUP
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="modifyDate != null" >
+        MODIFY_DATE,
+      </if>
+      <if test="orders != null" >
+        ORDERS,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="productCategory != null" >
+        PRODUCT_CATEGORY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="productCategory != null" >
+        #{productCategory,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="queryParameterGroup" resultMap="BaseResultMap">
+    select * from xx_parameter_group
+  </select>
+</mapper>

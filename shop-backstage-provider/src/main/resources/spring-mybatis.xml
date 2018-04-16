@@ -114,5 +114,11 @@ http://www.springframework.org/schema/task/spring-task-3.1.xsd
 	<aop:config>
 		<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
 	</aop:config>
-
+	<!-- aop简洁版  记录操作信息-->
+	<bean id="aopDemo" class="com.jk.aop.Aop_log" />
+	<aop:config>
+		<aop:advisor
+				pointcut="execution(* com.jk.service..*Impl.*(..))"
+				advice-ref="aopDemo" />
+	</aop:config>
 </beans>

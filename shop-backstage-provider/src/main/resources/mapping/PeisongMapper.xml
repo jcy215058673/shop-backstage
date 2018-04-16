@@ -27,7 +27,12 @@
   <!--XX_SHIPPING_METHOD_SEQUENCE.nextval-->
   <!--查询-->
   <select id="peisongList" parameterType="com.jk.model.Peisong" resultMap="BaseResultMap">
-    select * from XX_SHIPPING_METHOD
+    select * from XX_SHIPPING_METHOD where 1=1
+
+    <if test="name != null and name != ''">
+      and NAME like '%'||#{name}||'%'
+    </if>
+
   </select>
 
   <!--  批量删除 -->

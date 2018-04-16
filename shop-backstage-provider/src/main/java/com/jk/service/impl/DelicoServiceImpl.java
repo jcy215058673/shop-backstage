@@ -22,8 +22,10 @@ public class DelicoServiceImpl  implements DelicoService{
 
     //查询
     @RequestMapping("delicoList")
-    public List<Delico> delicoList() {
-        List<Delico> delicoList = delicomapper.delicoList();
+    public List<Delico> delicoList(Delico delico,Integer page,Integer rows) {
+        page = (page-1)*rows;
+        /*return delicomapper.delicoList(delico,page,rows);*/
+        List<Delico> delicoList = delicomapper.delicoList(delico,page,rows);
         return delicoList;
     }
 

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.PaymentMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Payment" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="ACCOUNT" property="account" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="DECIMAL" />
+    <result column="BANK" property="bank" jdbcType="VARCHAR" />
+    <result column="EXPIRE" property="expire" jdbcType="TIMESTAMP" />
+    <result column="FEE" property="fee" jdbcType="DECIMAL" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="METHOD" property="method" jdbcType="DECIMAL" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="PAYER" property="payer" jdbcType="VARCHAR" />
+    <result column="PAYMENT_DATE" property="paymentDate" jdbcType="TIMESTAMP" />
+    <result column="PAYMENTMETHOD" property="paymentMethod" jdbcType="VARCHAR" />
+    <result column="PAYMENT_PLUGIN_ID" property="paymentPluginId" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="DECIMAL" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+    <result column="MEMBER" property="member" jdbcType="DECIMAL" />
+    <result column="ORDERS" property="orders" jdbcType="DECIMAL" />
+  </resultMap>
+  <select id="querypayment" resultType="com.jk.model.Payment">
+    select * from xx_payment
+  </select>
+  <update id="xz" >
+    update xx_payment p set p.status=2 where p.id=#{id}
+  </update>
+
+  <update id="az" >
+    update xx_payment p set p.status=1 where p.id=#{id}
+  </update>
+</mapper>

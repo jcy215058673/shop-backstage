@@ -11,7 +11,7 @@ public class SpecificationValue implements Serializable{
     private String id;
     private Date creatadate;//创建时间
     private Date modifydate;//修改时间
-    private Integer svorders;//排序
+    private String svorders;//排序
     private String image;//图片
     private String svname;//名字
     private String specification;//规格
@@ -40,11 +40,11 @@ public class SpecificationValue implements Serializable{
         this.modifydate = modifydate;
     }
 
-    public Integer getSvorders() {
+    public String getSvorders() {
         return svorders;
     }
 
-    public void setSvorders(Integer svorders) {
+    public void setSvorders(String svorders) {
         this.svorders = svorders;
     }
 
@@ -94,7 +94,7 @@ public class SpecificationValue implements Serializable{
                 "id='" + id + '\'' +
                 ", creatadate=" + creatadate +
                 ", modifydate=" + modifydate +
-                ", svorders=" + svorders +
+                ", svorders='" + svorders + '\'' +
                 ", image='" + image + '\'' +
                 ", svname='" + svname + '\'' +
                 ", specification='" + specification + '\'' +

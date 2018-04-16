@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.jk.dao.HyzcMapper" >
+
+  <resultMap id="hyzc" type="com.jk.model.Hyzc" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="ORDERS" property="orders" jdbcType="DECIMAL" />
+    <result column="IS_ENABLED" property="isEnabled" jdbcType="DECIMAL" />
+    <result column="IS_REQUIRED" property="isRequired" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PROPERTY_INDEX" property="propertyIndex" jdbcType="DECIMAL" />
+    <result column="TYPE" property="type" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List_hyzc" >
+    ID, CREATE_DATE, MODIFY_DATE, ORDERS, IS_ENABLED, IS_REQUIRED, NAME, PROPERTY_INDEX, 
+    TYPE
+  </sql>
+  <select id="gethyzc" resultMap="hyzc" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List_hyzc" />
+    from XX_MEMBER_ATTRIBUTE
+  </select>
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from XX_MEMBER_ATTRIBUTE
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>-->
+  <!--<insert id="insert" parameterType="com.jk.model.Hyzc" >
+    insert into XX_MEMBER_ATTRIBUTE (ID, CREATE_DATE, MODIFY_DATE, 
+      ORDERS, IS_ENABLED, IS_REQUIRED, 
+      NAME, PROPERTY_INDEX, TYPE
+      )
+    values (#{id,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{orders,jdbcType=DECIMAL}, #{isEnabled,jdbcType=DECIMAL}, #{isRequired,jdbcType=DECIMAL}, 
+      #{name,jdbcType=VARCHAR}, #{propertyIndex,jdbcType=DECIMAL}, #{type,jdbcType=DECIMAL}
+      )
+  </insert>-->
+
+
+ <!-- <update id="updateByPrimaryKey" parameterType="com.jk.model.Hyzc" >
+    update XX_MEMBER_ATTRIBUTE
+    set CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
+      ORDERS = #{orders,jdbcType=DECIMAL},
+      IS_ENABLED = #{isEnabled,jdbcType=DECIMAL},
+      IS_REQUIRED = #{isRequired,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      PROPERTY_INDEX = #{propertyIndex,jdbcType=DECIMAL},
+      TYPE = #{type,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>-->
+</mapper>

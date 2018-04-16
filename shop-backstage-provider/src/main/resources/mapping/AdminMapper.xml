@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.AdminMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Admin" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="IS_ENABLED" property="isEnabled" jdbcType="DECIMAL" />
+    <result column="IS_LOCKED" property="isLocked" jdbcType="DECIMAL" />
+    <result column="LOCKED_DATE" property="lockedDate" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_DATE" property="loginDate" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_FAILURE_COUNT" property="loginFailureCount" jdbcType="DECIMAL" />
+    <result column="LOGIN_IP" property="loginIp" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREATE_DATE, MODIFY_DATE, DEPARTMENT, EMAIL, IS_ENABLED, IS_LOCKED, LOCKED_DATE, 
+    LOGIN_DATE, LOGIN_FAILURE_COUNT, LOGIN_IP, NAME, PASSWORD, USERNAME
+  </sql>
+  <select id="queryadmin" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from XX_ADMIN
+
+  </select>
+  <delete id="deladmin" parameterType="java.lang.Integer" >
+    delete from XX_admin
+    where id
+    <foreach item="it" separator="," close=")" open="in (" collection="adminlist"> #{it}</foreach>
+  </delete>
+
+
+
+</mapper>

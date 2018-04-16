@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.DeliverytemplateMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Deliverytemplate" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="background" property="background" jdbcType="VARCHAR" />
+    <result column="height" property="height" jdbcType="INTEGER" />
+    <result column="is_default" property="isDefault" jdbcType="BIT" />
+    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="offsetx" property="offsetx" jdbcType="INTEGER" />
+    <result column="offsety" property="offsety" jdbcType="INTEGER" />
+    <result column="width" property="width" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jk.model.Deliverytemplate" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, create_date, modify_date, background, height, is_default, memo, name, offsetx, 
+    offsety, width
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <!-- 查询 -->
+  <select id="queryDeliverytemplate" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from xx_delivery_template
+  </select>
+
+  <!-- 批量删除 -->
+  <delete id="delDeliverytemplates">
+    delete from xx_delivery_template where id in(${ids})
+  </delete>
+
+  <!-- 新增 -->
+  <insert id="addDeliverytemplate" parameterType="com.jk.model.Deliverytemplate" >
+    insert into XX_DELIVERY_TEMPLATE
+    (ID,CREATE_DATE, MODIFY_DATE,BACKGROUND,HEIGHT,IS_DEFAULT,MEMO,NAME,OFFSETX,OFFSETY,WIDTH,CONTENT)
+    values (aa_seq_useid.nextval,#{createDate,jdbcType=TIMESTAMP},#{modifyDate,jdbcType=TIMESTAMP},
+    #{background,jdbcType=VARCHAR},#{height,jdbcType=INTEGER},#{isDefault,jdbcType=BIT},
+    #{memo,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{offsetx,jdbcType=INTEGER},
+    #{offsety,jdbcType=INTEGER},#{width,jdbcType=INTEGER},#{content,jdbcType=LONGVARCHAR}
+    )
+  </insert>
+
+  <!-- 回显 -->
+  <select id="updateDeliverytemplateById" resultType="com.jk.model.Deliverytemplate">
+    select * from xx_delivery_template where id = #{id}
+  </select>
+
+  <!-- 修改 -->
+  <update id="updateDeliverytemplate">
+    update xx_delivery_template
+    set create_date=#{createDate,jdbcType=TIMESTAMP},modify_date=#{modifyDate,jdbcType=TIMESTAMP},background=#{background,jdbcType=VARCHAR},
+    height=#{height,jdbcType=INTEGER},is_default=#{isDefault,jdbcType=BIT},memo=#{memo,jdbcType=VARCHAR},
+    name=#{name,jdbcType=VARCHAR},offsetx=#{offsetx,jdbcType=INTEGER},offsety=#{offsety,jdbcType=INTEGER},
+    width=#{width,jdbcType=INTEGER},content= #{content,jdbcType=LONGVARCHAR}
+    where id=#{id,jdbcType=BIGINT}
+  </update>
+</mapper>

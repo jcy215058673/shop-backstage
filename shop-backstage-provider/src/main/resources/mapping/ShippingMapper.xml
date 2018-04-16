@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ShippingMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Shipping" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="AREA" property="area" jdbcType="VARCHAR" />
+    <result column="CONSIGNEE" property="consignee" jdbcType="VARCHAR" />
+    <result column="DELIVERY_CORP" property="deliveryCorp" jdbcType="VARCHAR" />
+    <result column="DELIVERY_CORP_CODE" property="deliveryCorpCode" jdbcType="VARCHAR" />
+    <result column="DELIVERY_CORP_URL" property="deliveryCorpUrl" jdbcType="VARCHAR" />
+    <result column="FREIGHT" property="freight" jdbcType="DECIMAL" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="OPERATOR" property="operator" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="SHIPPING_METHOD" property="shippingMethod" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="TRACKING_NO" property="trackingNo" jdbcType="VARCHAR" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="ORDERS" property="orders" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREATE_DATE, MODIFY_DATE, ADDRESS, AREA, CONSIGNEE, DELIVERY_CORP, DELIVERY_CORP_CODE, 
+    DELIVERY_CORP_URL, FREIGHT, MEMO, OPERATOR, PHONE, SHIPPING_METHOD, SN, TRACKING_NO, 
+    ZIP_CODE, ORDERS
+  </sql>
+  <select id="shipList" resultMap="BaseResultMap" parameterType="com.jk.model.Shipping" >
+
+    select * from
+    (select a.*,rownum rn from
+    (select * from XX_SHIPPING) a
+    )
+    where rn between #{page} and #{rows}
+  </select>
+
+  <delete id="deleteship" parameterType="java.lang.Integer">
+    delete from XX_SHIPPING
+    where ID in
+    <foreach collection="ff" item="hh" index="index" open="(" separator="," close=")">
+      ${hh}
+    </foreach>
+  </delete>
+
+  <insert id="addshp" parameterType="com.jk.model.Shipping" >
+    insert into XX_SHIPPING (ID, SHIPPING_METHOD, DELIVERY_CORP,
+    TRACKING_NO,CONSIGNEE,CREATE_DATE)
+
+    values (xx_returns_sequence.nextval,#{shippingMethod,jdbcType=VARCHAR},#{deliveryCorp,jdbcType=VARCHAR},
+    #{trackingNo,jdbcType=VARCHAR},#{consignee,jdbcType=VARCHAR},
+    to_date(#{createDate},'yyyy-mm-dd hh24:mi:ss')
+    )
+  </insert>
+
+  <update id="updship" parameterType="com.jk.model.Shipping">
+    update XX_SHIPPING set
+    SHIPPING_METHOD = #{shippingMethod,jdbcType=VARCHAR},
+    DELIVERY_CORP = #{deliveryCorp,jdbcType=VARCHAR},
+    TRACKING_NO = #{trackingNo,jdbcType=VARCHAR},
+    CONSIGNEE = #{consignee,jdbcType=VARCHAR},
+    CREATEDATE = #{createdate,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

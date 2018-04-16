@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.DeliverycenterMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.DeliveryCenter" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="ADDRESS" property="address" jdbcType="VARCHAR" />
+    <result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+    <result column="CONTACT" property="contact" jdbcType="VARCHAR" />
+    <result column="IS_DEFAULT" property="isDefault" jdbcType="DECIMAL" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="MOBILE" property="mobile" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="ZIP_CODE" property="zipCode" jdbcType="VARCHAR" />
+    <result column="AREA" property="area" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREATE_DATE, MODIFY_DATE, ADDRESS, AREA_NAME, CONTACT, IS_DEFAULT, MEMO, MOBILE, 
+    NAME, PHONE, ZIP_CODE, AREA
+  </sql>
+  <!-- 查询 -->
+  <select id="queryDeliveryCenter" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from XX_DELIVERY_CENTER
+  </select>
+
+  <!-- 批量删除 -->
+  <delete id="delDeliverycenter">
+    delete from XX_DELIVERY_CENTER where id in(${ids})
+  </delete>
+
+  <!-- 新增 -->
+  <insert id="addDeliverycenter" parameterType="com.jk.model.DeliveryCenter" >
+    insert into XX_DELIVERY_CENTER
+    (ID,CREATE_DATE,MODIFY_DATE,ADDRESS,AREA_NAME,CONTACT,IS_DEFAULT,MEMO,MOBILE,NAME,PHONE,ZIP_CODE,AREA)
+    values (aa_seq_useid.nextval,
+    #{createDate,jdbcType=TIMESTAMP},#{modifyDate,jdbcType=TIMESTAMP},#{address,jdbcType=VARCHAR},
+    #{areaName,jdbcType=VARCHAR}, #{contact,jdbcType=VARCHAR},#{isDefault,jdbcType=DECIMAL},
+    #{memo,jdbcType=VARCHAR},#{mobile,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},
+    #{zipCode,jdbcType=VARCHAR},#{area,jdbcType=DECIMAL})
+  </insert>
+
+  <!-- 回显 -->
+  <select id="updateDeliverycenterById" resultType="com.jk.model.DeliveryCenter">
+    select * from XX_DELIVERY_CENTER where id = #{id}
+  </select>
+
+  <!-- 修改 -->
+  <update id="updateDeliverycenter">
+    update XX_DELIVERY_CENTER
+    set
+    CREATE_DATE=#{createDate,jdbcType=TIMESTAMP},MODIFY_DATE=#{modifyDate,jdbcType=TIMESTAMP},
+    ADDRESS=#{address,jdbcType=VARCHAR},AREA_NAME=#{areaName,jdbcType=VARCHAR},CONTACT=#{contact,jdbcType=VARCHAR},
+    IS_DEFAULT=#{isDefault,jdbcType=DECIMAL},MEMO=#{memo,jdbcType=VARCHAR},MOBILE=#{mobile,jdbcType=VARCHAR},
+    NAME=#{name,jdbcType=VARCHAR},PHONE=#{phone,jdbcType=VARCHAR},
+    ZIP_CODE=#{zipCode,jdbcType=VARCHAR},AREA=#{area,jdbcType=DECIMAL}
+    where ID=#{id,jdbcType=DECIMAL}
+  </update>
+</mapper>

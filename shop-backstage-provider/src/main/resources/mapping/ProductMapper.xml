@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.Product" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="ALLOCATED_STOCK" property="allocatedStock" jdbcType="DECIMAL" />
+    <result column="ATTRIBUTE_VALUE0" property="attributeValue0" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE1" property="attributeValue1" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE10" property="attributeValue10" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE11" property="attributeValue11" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE12" property="attributeValue12" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE13" property="attributeValue13" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE14" property="attributeValue14" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE15" property="attributeValue15" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE16" property="attributeValue16" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE17" property="attributeValue17" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE18" property="attributeValue18" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE19" property="attributeValue19" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE2" property="attributeValue2" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE3" property="attributeValue3" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE4" property="attributeValue4" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE5" property="attributeValue5" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE6" property="attributeValue6" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE7" property="attributeValue7" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE8" property="attributeValue8" jdbcType="VARCHAR" />
+    <result column="ATTRIBUTE_VALUE9" property="attributeValue9" jdbcType="VARCHAR" />
+    <result column="COST" property="cost" jdbcType="DECIMAL" />
+    <result column="FULL_NAME" property="fullName" jdbcType="VARCHAR" />
+    <result column="HITS" property="hits" jdbcType="DECIMAL" />
+    <result column="IMAGE" property="image" jdbcType="VARCHAR" />
+    <result column="IS_GIFT" property="isGift" jdbcType="DECIMAL" />
+    <result column="IS_LIST" property="isList" jdbcType="DECIMAL" />
+    <result column="IS_MARKETABLE" property="isMarketable" jdbcType="DECIMAL" />
+    <result column="IS_TOP" property="isTop" jdbcType="DECIMAL" />
+    <result column="KEYWORD" property="keyword" jdbcType="VARCHAR" />
+    <result column="MARKET_PRICE" property="marketPrice" jdbcType="DECIMAL" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="MONTH_HITS" property="monthHits" jdbcType="DECIMAL" />
+    <result column="MONTH_HITS_DATE" property="monthHitsDate" jdbcType="TIMESTAMP" />
+    <result column="MONTH_SALES" property="monthSales" jdbcType="DECIMAL" />
+    <result column="MONTH_SALES_DATE" property="monthSalesDate" jdbcType="TIMESTAMP" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="POINT" property="point" jdbcType="DECIMAL" />
+    <result column="PRICE" property="price" jdbcType="DECIMAL" />
+    <result column="SALES" property="sales" jdbcType="DECIMAL" />
+    <result column="SCORE" property="score" jdbcType="FLOAT" />
+    <result column="SCORE_COUNT" property="scoreCount" jdbcType="DECIMAL" />
+    <result column="SEO_DESCRIPTION" property="seoDescription" jdbcType="VARCHAR" />
+    <result column="SEO_KEYWORDS" property="seoKeywords" jdbcType="VARCHAR" />
+    <result column="SEO_TITLE" property="seoTitle" jdbcType="VARCHAR" />
+    <result column="SN" property="sn" jdbcType="VARCHAR" />
+    <result column="STOCK" property="stock" jdbcType="DECIMAL" />
+    <result column="STOCK_MEMO" property="stockMemo" jdbcType="VARCHAR" />
+    <result column="TOTAL_SCORE" property="totalScore" jdbcType="DECIMAL" />
+    <result column="UNIT" property="unit" jdbcType="VARCHAR" />
+    <result column="WEEK_HITS" property="weekHits" jdbcType="DECIMAL" />
+    <result column="WEEK_HITS_DATE" property="weekHitsDate" jdbcType="TIMESTAMP" />
+    <result column="WEEK_SALES" property="weekSales" jdbcType="DECIMAL" />
+    <result column="WEEK_SALES_DATE" property="weekSalesDate" jdbcType="TIMESTAMP" />
+    <result column="WEIGHT" property="weight" jdbcType="DECIMAL" />
+    <result column="BRAND" property="brand" jdbcType="DECIMAL" />
+    <result column="GOODS" property="goods" jdbcType="DECIMAL" />
+    <result column="PRODUCT_CATEGORY" property="productCategory" jdbcType="DECIMAL" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.jk.model.Product" extends="BaseResultMap" >
+    <result column="INTRODUCTION" property="introduction" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Blob_Column_List" >
+    INTRODUCTION
+  </sql>
+  <insert id="insert" parameterType="com.jk.model.Product" >
+    insert into XX_PRODUCT (ID, CREATE_DATE, MODIFY_DATE, 
+      ALLOCATED_STOCK, ATTRIBUTE_VALUE0, ATTRIBUTE_VALUE1, 
+      ATTRIBUTE_VALUE10, ATTRIBUTE_VALUE11, ATTRIBUTE_VALUE12, 
+      ATTRIBUTE_VALUE13, ATTRIBUTE_VALUE14, ATTRIBUTE_VALUE15, 
+      ATTRIBUTE_VALUE16, ATTRIBUTE_VALUE17, ATTRIBUTE_VALUE18, 
+      ATTRIBUTE_VALUE19, ATTRIBUTE_VALUE2, ATTRIBUTE_VALUE3, 
+      ATTRIBUTE_VALUE4, ATTRIBUTE_VALUE5, ATTRIBUTE_VALUE6, 
+      ATTRIBUTE_VALUE7, ATTRIBUTE_VALUE8, ATTRIBUTE_VALUE9, 
+      COST, FULL_NAME, HITS, 
+      IMAGE, IS_GIFT, IS_LIST, 
+      IS_MARKETABLE, IS_TOP, KEYWORD, 
+      MARKET_PRICE, MEMO, MONTH_HITS, 
+      MONTH_HITS_DATE, MONTH_SALES, MONTH_SALES_DATE, 
+      NAME, POINT, PRICE, 
+      SALES, SCORE, SCORE_COUNT, 
+      SEO_DESCRIPTION, SEO_KEYWORDS, SEO_TITLE, 
+      SN, STOCK, STOCK_MEMO, 
+      TOTAL_SCORE, UNIT, WEEK_HITS, 
+      WEEK_HITS_DATE, WEEK_SALES, WEEK_SALES_DATE, 
+      WEIGHT, BRAND, GOODS, 
+      PRODUCT_CATEGORY, INTRODUCTION)
+    values (#{id,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{allocatedStock,jdbcType=DECIMAL}, #{attributeValue0,jdbcType=VARCHAR}, #{attributeValue1,jdbcType=VARCHAR}, 
+      #{attributeValue10,jdbcType=VARCHAR}, #{attributeValue11,jdbcType=VARCHAR}, #{attributeValue12,jdbcType=VARCHAR}, 
+      #{attributeValue13,jdbcType=VARCHAR}, #{attributeValue14,jdbcType=VARCHAR}, #{attributeValue15,jdbcType=VARCHAR}, 
+      #{attributeValue16,jdbcType=VARCHAR}, #{attributeValue17,jdbcType=VARCHAR}, #{attributeValue18,jdbcType=VARCHAR}, 
+      #{attributeValue19,jdbcType=VARCHAR}, #{attributeValue2,jdbcType=VARCHAR}, #{attributeValue3,jdbcType=VARCHAR}, 
+      #{attributeValue4,jdbcType=VARCHAR}, #{attributeValue5,jdbcType=VARCHAR}, #{attributeValue6,jdbcType=VARCHAR}, 
+      #{attributeValue7,jdbcType=VARCHAR}, #{attributeValue8,jdbcType=VARCHAR}, #{attributeValue9,jdbcType=VARCHAR}, 
+      #{cost,jdbcType=DECIMAL}, #{fullName,jdbcType=VARCHAR}, #{hits,jdbcType=DECIMAL}, 
+      #{image,jdbcType=VARCHAR}, #{isGift,jdbcType=DECIMAL}, #{isList,jdbcType=DECIMAL}, 
+      #{isMarketable,jdbcType=DECIMAL}, #{isTop,jdbcType=DECIMAL}, #{keyword,jdbcType=VARCHAR}, 
+      #{marketPrice,jdbcType=DECIMAL}, #{memo,jdbcType=VARCHAR}, #{monthHits,jdbcType=DECIMAL}, 
+      #{monthHitsDate,jdbcType=TIMESTAMP}, #{monthSales,jdbcType=DECIMAL}, #{monthSalesDate,jdbcType=TIMESTAMP}, 
+      #{name,jdbcType=VARCHAR}, #{point,jdbcType=DECIMAL}, #{price,jdbcType=DECIMAL}, 
+      #{sales,jdbcType=DECIMAL}, #{score,jdbcType=FLOAT}, #{scoreCount,jdbcType=DECIMAL}, 
+      #{seoDescription,jdbcType=VARCHAR}, #{seoKeywords,jdbcType=VARCHAR}, #{seoTitle,jdbcType=VARCHAR}, 
+      #{sn,jdbcType=VARCHAR}, #{stock,jdbcType=DECIMAL}, #{stockMemo,jdbcType=VARCHAR}, 
+      #{totalScore,jdbcType=DECIMAL}, #{unit,jdbcType=VARCHAR}, #{weekHits,jdbcType=DECIMAL}, 
+      #{weekHitsDate,jdbcType=TIMESTAMP}, #{weekSales,jdbcType=DECIMAL}, #{weekSalesDate,jdbcType=TIMESTAMP}, 
+      #{weight,jdbcType=DECIMAL}, #{brand,jdbcType=DECIMAL}, #{goods,jdbcType=DECIMAL}, 
+      #{productCategory,jdbcType=DECIMAL}, #{introduction,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.Product" >
+    insert into XX_PRODUCT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="modifyDate != null" >
+        MODIFY_DATE,
+      </if>
+      <if test="allocatedStock != null" >
+        ALLOCATED_STOCK,
+      </if>
+      <if test="attributeValue0 != null" >
+        ATTRIBUTE_VALUE0,
+      </if>
+      <if test="attributeValue1 != null" >
+        ATTRIBUTE_VALUE1,
+      </if>
+      <if test="attributeValue10 != null" >
+        ATTRIBUTE_VALUE10,
+      </if>
+      <if test="attributeValue11 != null" >
+        ATTRIBUTE_VALUE11,
+      </if>
+      <if test="attributeValue12 != null" >
+        ATTRIBUTE_VALUE12,
+      </if>
+      <if test="attributeValue13 != null" >
+        ATTRIBUTE_VALUE13,
+      </if>
+      <if test="attributeValue14 != null" >
+        ATTRIBUTE_VALUE14,
+      </if>
+      <if test="attributeValue15 != null" >
+        ATTRIBUTE_VALUE15,
+      </if>
+      <if test="attributeValue16 != null" >
+        ATTRIBUTE_VALUE16,
+      </if>
+      <if test="attributeValue17 != null" >
+        ATTRIBUTE_VALUE17,
+      </if>
+      <if test="attributeValue18 != null" >
+        ATTRIBUTE_VALUE18,
+      </if>
+      <if test="attributeValue19 != null" >
+        ATTRIBUTE_VALUE19,
+      </if>
+      <if test="attributeValue2 != null" >
+        ATTRIBUTE_VALUE2,
+      </if>
+      <if test="attributeValue3 != null" >
+        ATTRIBUTE_VALUE3,
+      </if>
+      <if test="attributeValue4 != null" >
+        ATTRIBUTE_VALUE4,
+      </if>
+      <if test="attributeValue5 != null" >
+        ATTRIBUTE_VALUE5,
+      </if>
+      <if test="attributeValue6 != null" >
+        ATTRIBUTE_VALUE6,
+      </if>
+      <if test="attributeValue7 != null" >
+        ATTRIBUTE_VALUE7,
+      </if>
+      <if test="attributeValue8 != null" >
+        ATTRIBUTE_VALUE8,
+      </if>
+      <if test="attributeValue9 != null" >
+        ATTRIBUTE_VALUE9,
+      </if>
+      <if test="cost != null" >
+        COST,
+      </if>
+      <if test="fullName != null" >
+        FULL_NAME,
+      </if>
+      <if test="hits != null" >
+        HITS,
+      </if>
+      <if test="image != null" >
+        IMAGE,
+      </if>
+      <if test="isGift != null" >
+        IS_GIFT,
+      </if>
+      <if test="isList != null" >
+        IS_LIST,
+      </if>
+      <if test="isMarketable != null" >
+        IS_MARKETABLE,
+      </if>
+      <if test="isTop != null" >
+        IS_TOP,
+      </if>
+      <if test="keyword != null" >
+        KEYWORD,
+      </if>
+      <if test="marketPrice != null" >
+        MARKET_PRICE,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="monthHits != null" >
+        MONTH_HITS,
+      </if>
+      <if test="monthHitsDate != null" >
+        MONTH_HITS_DATE,
+      </if>
+      <if test="monthSales != null" >
+        MONTH_SALES,
+      </if>
+      <if test="monthSalesDate != null" >
+        MONTH_SALES_DATE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="point != null" >
+        POINT,
+      </if>
+      <if test="price != null" >
+        PRICE,
+      </if>
+      <if test="sales != null" >
+        SALES,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="scoreCount != null" >
+        SCORE_COUNT,
+      </if>
+      <if test="seoDescription != null" >
+        SEO_DESCRIPTION,
+      </if>
+      <if test="seoKeywords != null" >
+        SEO_KEYWORDS,
+      </if>
+      <if test="seoTitle != null" >
+        SEO_TITLE,
+      </if>
+      <if test="sn != null" >
+        SN,
+      </if>
+      <if test="stock != null" >
+        STOCK,
+      </if>
+      <if test="stockMemo != null" >
+        STOCK_MEMO,
+      </if>
+      <if test="totalScore != null" >
+        TOTAL_SCORE,
+      </if>
+      <if test="unit != null" >
+        UNIT,
+      </if>
+      <if test="weekHits != null" >
+        WEEK_HITS,
+      </if>
+      <if test="weekHitsDate != null" >
+        WEEK_HITS_DATE,
+      </if>
+      <if test="weekSales != null" >
+        WEEK_SALES,
+      </if>
+      <if test="weekSalesDate != null" >
+        WEEK_SALES_DATE,
+      </if>
+      <if test="weight != null" >
+        WEIGHT,
+      </if>
+      <if test="brand != null" >
+        BRAND,
+      </if>
+      <if test="goods != null" >
+        GOODS,
+      </if>
+      <if test="productCategory != null" >
+        PRODUCT_CATEGORY,
+      </if>
+      <if test="introduction != null" >
+        INTRODUCTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="allocatedStock != null" >
+        #{allocatedStock,jdbcType=DECIMAL},
+      </if>
+      <if test="attributeValue0 != null" >
+        #{attributeValue0,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue1 != null" >
+        #{attributeValue1,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue10 != null" >
+        #{attributeValue10,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue11 != null" >
+        #{attributeValue11,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue12 != null" >
+        #{attributeValue12,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue13 != null" >
+        #{attributeValue13,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue14 != null" >
+        #{attributeValue14,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue15 != null" >
+        #{attributeValue15,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue16 != null" >
+        #{attributeValue16,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue17 != null" >
+        #{attributeValue17,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue18 != null" >
+        #{attributeValue18,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue19 != null" >
+        #{attributeValue19,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue2 != null" >
+        #{attributeValue2,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue3 != null" >
+        #{attributeValue3,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue4 != null" >
+        #{attributeValue4,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue5 != null" >
+        #{attributeValue5,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue6 != null" >
+        #{attributeValue6,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue7 != null" >
+        #{attributeValue7,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue8 != null" >
+        #{attributeValue8,jdbcType=VARCHAR},
+      </if>
+      <if test="attributeValue9 != null" >
+        #{attributeValue9,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DECIMAL},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="hits != null" >
+        #{hits,jdbcType=DECIMAL},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="isGift != null" >
+        #{isGift,jdbcType=DECIMAL},
+      </if>
+      <if test="isList != null" >
+        #{isList,jdbcType=DECIMAL},
+      </if>
+      <if test="isMarketable != null" >
+        #{isMarketable,jdbcType=DECIMAL},
+      </if>
+      <if test="isTop != null" >
+        #{isTop,jdbcType=DECIMAL},
+      </if>
+      <if test="keyword != null" >
+        #{keyword,jdbcType=VARCHAR},
+      </if>
+      <if test="marketPrice != null" >
+        #{marketPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="monthHits != null" >
+        #{monthHits,jdbcType=DECIMAL},
+      </if>
+      <if test="monthHitsDate != null" >
+        #{monthHitsDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="monthSales != null" >
+        #{monthSales,jdbcType=DECIMAL},
+      </if>
+      <if test="monthSalesDate != null" >
+        #{monthSalesDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="point != null" >
+        #{point,jdbcType=DECIMAL},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="sales != null" >
+        #{sales,jdbcType=DECIMAL},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=FLOAT},
+      </if>
+      <if test="scoreCount != null" >
+        #{scoreCount,jdbcType=DECIMAL},
+      </if>
+      <if test="seoDescription != null" >
+        #{seoDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeywords != null" >
+        #{seoKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="seoTitle != null" >
+        #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="stock != null" >
+        #{stock,jdbcType=DECIMAL},
+      </if>
+      <if test="stockMemo != null" >
+        #{stockMemo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalScore != null" >
+        #{totalScore,jdbcType=DECIMAL},
+      </if>
+      <if test="unit != null" >
+        #{unit,jdbcType=VARCHAR},
+      </if>
+      <if test="weekHits != null" >
+        #{weekHits,jdbcType=DECIMAL},
+      </if>
+      <if test="weekHitsDate != null" >
+        #{weekHitsDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weekSales != null" >
+        #{weekSales,jdbcType=DECIMAL},
+      </if>
+      <if test="weekSalesDate != null" >
+        #{weekSalesDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DECIMAL},
+      </if>
+      <if test="brand != null" >
+        #{brand,jdbcType=DECIMAL},
+      </if>
+      <if test="goods != null" >
+        #{goods,jdbcType=DECIMAL},
+      </if>
+      <if test="productCategory != null" >
+        #{productCategory,jdbcType=DECIMAL},
+      </if>
+      <if test="introduction != null" >
+        #{introduction,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <!--- 查询商品列表-->
+  <select id="productList" parameterType="com.jk.model.Product" resultMap="BaseResultMap">
+    SELECT * FROM xx_product
+  </select>
+  <!-- 新增商品基本信息-->
+  <insert id="addProductList" parameterType="com.jk.model.Product">
+    INSERT INTO xx_product() VALUES ()
+  </insert>
+</mapper>

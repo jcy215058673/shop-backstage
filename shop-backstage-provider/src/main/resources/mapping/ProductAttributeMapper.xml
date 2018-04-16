@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ProductAttributeMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.ProductAttribute" >
+    <result column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="ORDERS" property="orders" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PROPERTY_INDEX" property="propertyIndex" jdbcType="DECIMAL" />
+    <result column="PRODUCT_CATEGORY" property="productCategory" jdbcType="DECIMAL" />
+  </resultMap>
+  <insert id="insert" parameterType="com.jk.model.ProductAttribute" >
+    insert into XX_ATTRIBUTE (ID, CREATE_DATE, MODIFY_DATE, 
+      ORDERS, NAME, PROPERTY_INDEX, 
+      PRODUCT_CATEGORY)
+    values (#{id,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{orders,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, #{propertyIndex,jdbcType=DECIMAL}, 
+      #{productCategory,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.ProductAttribute" >
+    insert into XX_ATTRIBUTE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="modifyDate != null" >
+        MODIFY_DATE,
+      </if>
+      <if test="orders != null" >
+        ORDERS,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="propertyIndex != null" >
+        PROPERTY_INDEX,
+      </if>
+      <if test="productCategory != null" >
+        PRODUCT_CATEGORY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyIndex != null" >
+        #{propertyIndex,jdbcType=DECIMAL},
+      </if>
+      <if test="productCategory != null" >
+        #{productCategory,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <!-- 查询商品属性列表-->
+  <select id="queryProductAttribute" resultMap="BaseResultMap">
+    SELECT * FROM xx_attribute
+  </select>
+</mapper>

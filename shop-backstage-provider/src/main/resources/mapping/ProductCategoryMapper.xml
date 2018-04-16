@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.dao.ProductCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.jk.model.ProductCategory" >
+    <id column="ID" property="id" jdbcType="DECIMAL" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="MODIFY_DATE" property="modifyDate" jdbcType="TIMESTAMP" />
+    <result column="ORDERS" property="orders" jdbcType="DECIMAL" />
+    <result column="GRADE" property="grade" jdbcType="DECIMAL" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="SEO_DESCRIPTION" property="seoDescription" jdbcType="VARCHAR" />
+    <result column="SEO_KEYWORDS" property="seoKeywords" jdbcType="VARCHAR" />
+    <result column="SEO_TITLE" property="seoTitle" jdbcType="VARCHAR" />
+    <result column="TREE_PATH" property="treePath" jdbcType="VARCHAR" />
+    <result column="PARENT" property="parent" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CREATE_DATE, MODIFY_DATE, ORDERS, GRADE, NAME, SEO_DESCRIPTION, SEO_KEYWORDS, 
+    SEO_TITLE, TREE_PATH, PARENT
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from XX_PRODUCT_CATEGORY
+    where ID = #{id,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from XX_PRODUCT_CATEGORY
+    where ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.jk.model.ProductCategory" >
+    insert into XX_PRODUCT_CATEGORY (ID, CREATE_DATE, MODIFY_DATE, 
+      ORDERS, GRADE, NAME, 
+      SEO_DESCRIPTION, SEO_KEYWORDS, SEO_TITLE, 
+      TREE_PATH, PARENT)
+    values (#{id,jdbcType=DECIMAL}, #{createDate,jdbcType=TIMESTAMP}, #{modifyDate,jdbcType=TIMESTAMP}, 
+      #{orders,jdbcType=DECIMAL}, #{grade,jdbcType=DECIMAL}, #{name,jdbcType=VARCHAR}, 
+      #{seoDescription,jdbcType=VARCHAR}, #{seoKeywords,jdbcType=VARCHAR}, #{seoTitle,jdbcType=VARCHAR}, 
+      #{treePath,jdbcType=VARCHAR}, #{parent,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jk.model.ProductCategory" >
+    insert into XX_PRODUCT_CATEGORY
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+      <if test="modifyDate != null" >
+        MODIFY_DATE,
+      </if>
+      <if test="orders != null" >
+        ORDERS,
+      </if>
+      <if test="grade != null" >
+        GRADE,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="seoDescription != null" >
+        SEO_DESCRIPTION,
+      </if>
+      <if test="seoKeywords != null" >
+        SEO_KEYWORDS,
+      </if>
+      <if test="seoTitle != null" >
+        SEO_TITLE,
+      </if>
+      <if test="treePath != null" >
+        TREE_PATH,
+      </if>
+      <if test="parent != null" >
+        PARENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=DECIMAL},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orders != null" >
+        #{orders,jdbcType=DECIMAL},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seoDescription != null" >
+        #{seoDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeywords != null" >
+        #{seoKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="seoTitle != null" >
+        #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="treePath != null" >
+        #{treePath,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null" >
+        #{parent,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jk.model.ProductCategory" >
+    update XX_PRODUCT_CATEGORY
+    <set >
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyDate != null" >
+        MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orders != null" >
+        ORDERS = #{orders,jdbcType=DECIMAL},
+      </if>
+      <if test="grade != null" >
+        GRADE = #{grade,jdbcType=DECIMAL},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="seoDescription != null" >
+        SEO_DESCRIPTION = #{seoDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="seoKeywords != null" >
+        SEO_KEYWORDS = #{seoKeywords,jdbcType=VARCHAR},
+      </if>
+      <if test="seoTitle != null" >
+        SEO_TITLE = #{seoTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="treePath != null" >
+        TREE_PATH = #{treePath,jdbcType=VARCHAR},
+      </if>
+      <if test="parent != null" >
+        PARENT = #{parent,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jk.model.ProductCategory" >
+    update XX_PRODUCT_CATEGORY
+    set CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      MODIFY_DATE = #{modifyDate,jdbcType=TIMESTAMP},
+      ORDERS = #{orders,jdbcType=DECIMAL},
+      GRADE = #{grade,jdbcType=DECIMAL},
+      NAME = #{name,jdbcType=VARCHAR},
+      SEO_DESCRIPTION = #{seoDescription,jdbcType=VARCHAR},
+      SEO_KEYWORDS = #{seoKeywords,jdbcType=VARCHAR},
+      SEO_TITLE = #{seoTitle,jdbcType=VARCHAR},
+      TREE_PATH = #{treePath,jdbcType=VARCHAR},
+      PARENT = #{parent,jdbcType=DECIMAL}
+    where ID = #{id,jdbcType=DECIMAL}
+  </update>
+  <!-- 查看商品分类列表-->
+  <select id="queryProductCategury" resultMap="BaseResultMap">
+    SELECT * FROM xx_product_category
+  </select>
+</mapper>

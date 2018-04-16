@@ -10,7 +10,7 @@ import java.util.List;
 public interface PeisongService {
 
     //查询
-    public List<Peisong> peisongList();
+    public List<Peisong> peisongList(Peisong peisong);
 
     //删除
     public void deleteShopByIDs(Peisong peisong);

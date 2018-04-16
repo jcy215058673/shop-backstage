@@ -6,7 +6,7 @@
 	<display-name>dimeng-productor-two</display-name>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring.xml,classpath:spring-mybatis.xml,classpath:spring-dubbo-provider.xml</param-value>
+		<param-value>classpath:spring.xml,classpath:spring-mybatis.xml,classpath:spring-dubbo-provider.xml,classpath:spring-mongo.xml</param-value>
 	</context-param>
 	<filter>
 		<description>字符集过滤器</description>

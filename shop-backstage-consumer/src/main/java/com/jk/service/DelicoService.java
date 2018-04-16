@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface DelicoService {
 
-    List<Delico> delicoList();
+    List<Delico> delicoList(Delico delico, Integer page, Integer rows);
 
     void deleteShopByIDs(Delico delico);
 

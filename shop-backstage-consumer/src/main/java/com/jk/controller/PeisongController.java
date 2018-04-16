@@ -41,8 +41,8 @@ public class PeisongController extends BaseController{
 
     //查询
     @RequestMapping("/peisongList")
-    public void userList(HttpServletResponse response) {
-        List<Peisong> peisongList = peisongService.peisongList();
+    public void peisongList(HttpServletResponse response,Peisong peisong) {
+        List<Peisong> peisongList = peisongService.peisongList(peisong);
         super.writeJson(peisongList, response);
     }
 
@@ -55,7 +55,11 @@ public class PeisongController extends BaseController{
 
     //增加跳转页面
     @RequestMapping("toPeisongAdd")
-    String toPeisongAdd(){
+    //动态下拉列表新增附表字段
+    String toPeisongAdd(HttpServletRequest request,Peisong peisong){
+        //动态查询表字段
+        List<Peisong> peisongList = peisongService.peisongList(peisong);
+        request.setAttribute("peisongList",peisongList);
         return "addpeisong";
     }
 

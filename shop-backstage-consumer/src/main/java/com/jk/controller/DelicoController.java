@@ -34,8 +34,8 @@ public class DelicoController extends BaseController{
 
     //查询
     @RequestMapping("/delicoList")
-    public void delicoList(HttpServletResponse response) {
-        List<Delico> delicoList = delicoService.delicoList();
+    public void delicoList(HttpServletResponse response,Delico delico,Integer page,Integer rows) {
+        List<Delico> delicoList = delicoService.delicoList(delico,page,rows);
         super.writeJson(delicoList, response);
     }
 

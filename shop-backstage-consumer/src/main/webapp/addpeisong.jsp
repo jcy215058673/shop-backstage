@@ -26,12 +26,21 @@
             <td>名称<td>
             <td><input class="easyui-textbox" name="name"><td>
         </tr>
-        <tr>
+       <%-- <tr>
             <td>默认物流公司<td>
             <td><select name="defaultDeliveryCorp">
                 <option value="1">普通快递</option>
                 <option value="2">顺丰快递</option>
                 </select>
+            <td>
+        </tr>--%>
+        <tr>
+            <td>默认物流公司<td>
+            <td><select name="defaultDeliveryCorp">
+            <c:forEach items="${peisongList}" var="e">
+                <option value="${e.id}">${e.defaultDeliveryCorp}</option>
+            </c:forEach>
+        </select>
             <td>
         </tr>
         <tr>

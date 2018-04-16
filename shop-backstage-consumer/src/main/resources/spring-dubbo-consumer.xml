@@ -33,4 +33,21 @@
 	<dubbo:reference id="peisongService" interface="com.jk.service.PeisongService" />
 	<dubbo:reference id="zhifuService" interface="com.jk.service.ZhifuService" />
 	<dubbo:reference id="delicoService" interface="com.jk.service.DelicoService" />
+	<dubbo:reference id="orderService" interface="com.jk.service.OrderService" />
+	<dubbo:reference id="refundsService" interface="com.jk.service.RefundsService" />
+	<dubbo:reference id="depositService" interface="com.jk.service.DepositService" />
+	<dubbo:reference id="shippingService" interface="com.jk.service.ShippingService" />
+	<dubbo:reference id="deliverytemplateService" interface="com.jk.service.IDeliverytemplateService" />
+	<dubbo:reference id="deliverycenterService" interface="com.jk.service.IDeliverycenterService" />
+	<dubbo:reference id="areaService" interface="com.jk.service.IAreaService" />
+	<dubbo:reference id="shopservice" interface="com.jk.service.ShopService" />
+	<dubbo:reference id="hyzcservice" interface="com.jk.service.HyzcService" />
+	<dubbo:reference id="paymentService" interface="com.jk.service.PaymentService" />
+	<dubbo:reference id="adminService" interface="com.jk.service.AdminService" />
+	<dubbo:reference id="roleService" interface="com.jk.service.RoleService" />
+	<dubbo:reference id="productService" interface="com.jk.service.ProductService" />
+	<dubbo:reference id="productCateguryService" interface="com.jk.service.ProductCateguryService" />
+	<dubbo:reference id="productParameterService" interface="com.jk.service.ProductParameterService" />
+	<dubbo:reference id="productAttributeService" interface="com.jk.service.ProductAttributeService" />
+	<dubbo:reference id="productParameterGroupService" interface="com.jk.service.ProductParameterGroupService" />
 </beans>

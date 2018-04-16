@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ZhifuService {
 
-    List<Zhifu> zhifuList();
+    List<Zhifu> zhifuList(Zhifu zhifu);
 
     void deleteShopByIDss(Zhifu zhifu);
 

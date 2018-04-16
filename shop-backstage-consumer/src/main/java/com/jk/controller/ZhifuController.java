@@ -42,8 +42,8 @@ public class ZhifuController extends BaseController{
 
     //查询
     @RequestMapping("/zhifuList")
-    public void zhifuList(HttpServletResponse response) {
-        List<Zhifu> zhifuList = zhifuService.zhifuList();
+    public void zhifuList(HttpServletResponse response,Zhifu zhifu) {
+        List<Zhifu> zhifuList = zhifuService.zhifuList(zhifu);
         super.writeJson(zhifuList, response);
     }
 

@@ -31,7 +31,7 @@
         <tr>
             <td>支付方式<td>
             <td><select name="zmethod">
-                <option value="0">在下支付</option>
+                <option value="0">在线支付</option>
                 <option value="1">线下支付</option>
             </select><td>
         </tr>

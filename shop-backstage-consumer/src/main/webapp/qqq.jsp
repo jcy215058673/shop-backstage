@@ -22,6 +22,13 @@
         <div id="emp_tool_div">
             <div onclick="open_emp_add_dialog()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加</div>
             <div onclick="delete_all_checked_emp()" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">批量删除</div>
+
+            <!-- 条件查询 -->
+            <form id="emp_form_search">
+                名称:<input id="mingchenglist" class="easyui-searchbox" data-options="searcher:emp_search">
+                <div onClick="emp_search()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</div>
+                <div onClick="emp_search_reset()" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">重置</div>
+            </form>
         </div>
 
 </div>
@@ -40,9 +47,13 @@
             pageList:[1,3,5,7,9],
             //引入工具栏
             toolbar:"#emp_tool_div",
+            //根据选中的checked进行删除
+            checkOnSelect:false,
+            selectOnCheck:false,
             //表格占满
             fitColumns:true,
             columns:[[
+                {field:'che',checkbox:true},
                 {field:'name',title:'名称',width:100},
                 {field:'firstPrice',title:'首重价格',width:100},
                 {field:'continuePrice',title:'续重价格',width:100},
@@ -64,9 +75,9 @@
 
     //搜索方法
     function emp_search(){
-        var search_emp_degree = $("#search_emp_degree").combobox("getValue");
+        var mingchenglist = $("#mingchenglist").val();
         $("#shop_dg").datagrid('load',{
-            shlxid:search_emp_degree,
+            name:mingchenglist,
         });
     }
     //重置方法
@@ -76,7 +87,10 @@
 
     //批量删除选中的系列
     function delete_all_checked_emp(){
-        var checked_emp_arr = $('#shop_dg').datagrid("getSelections");
+        //根据CTRL多选删除
+        /*var checked_emp_arr = $('#shop_dg').datagrid("getSelections");*/
+        //根据选中的checked进行删除
+        var checked_emp_arr = $('#shop_dg').datagrid('getChecked');
         if(0<checked_emp_arr.length){
             $.messager.confirm('确认','您确认想要删除记录吗？',function(r){
                 if (r){

@@ -22,7 +22,16 @@
     <div id="emp_tool_div">
         <div onclick="open_emp_add_dialog()" class="easyui-linkbutton" data-options="iconCls:'icon-add'">添加</div>
         <div onclick="delete_all_checked_emp1()" class="easyui-linkbutton" data-options="iconCls:'icon-remove'">批量删除</div>
+        <!-- 条件查询 -->
+        <form id="emp_form_search">
+            名称:<input id="mingchenglist1" class="easyui-searchbox" data-options="searcher:emp_search">
+            <div onClick="emp_search()" class="easyui-linkbutton" data-options="iconCls:'icon-search'">搜索</div>
+            <div onClick="emp_search_reset()" class="easyui-linkbutton" data-options="iconCls:'icon-reload'">重置</div>
+        </form>
+
+
     </div>
+
 
 </div>
 <script type="text/javascript">
@@ -40,9 +49,13 @@
             pageList:[1,3,5,7,9],
             //引入工具栏
             toolbar:"#emp_tool_div",
+            //根据选中的checked进行删除
+            checkOnSelect:false,
+            selectOnCheck:false,
             //表格占满
             fitColumns:true,
             columns:[[
+                {field:'che',checkbox:true},
                 {field:'zname',title:'名称',width:100},
                 {field:'zmethod',title:'支付方式',width:100,
                     formatter:function(value,row,index){
@@ -72,9 +85,9 @@
 
     //搜索方法
     function emp_search(){
-        var search_emp_degree = $("#search_emp_degree").combobox("getValue");
+        var mingchenglist1 = $("#mingchenglist1").val();
         $("#shop_dg1").datagrid('load',{
-            shlxid:search_emp_degree,
+            zname:mingchenglist1,
         });
     }
     //重置方法
@@ -84,7 +97,10 @@
 
     //批量删除选中的系列
     function delete_all_checked_emp1(){
-        var checked_emp_arr = $('#shop_dg1').datagrid("getSelections");
+        //根据CTRL多选删除
+        /*var checked_emp_arr = $('#shop_dg').datagrid("getSelections");*/
+        //根据选中的checked进行删除
+        var checked_emp_arr = $('#shop_dg1').datagrid('getChecked');
         if(0<checked_emp_arr.length){
             $.messager.confirm('确认','您确认想要删除记录吗？',function(r){
                 if (r){

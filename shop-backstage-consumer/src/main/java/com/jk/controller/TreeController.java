@@ -23,7 +23,7 @@ public class TreeController extends BaseController{
 
     @RequestMapping("/queryTreeList")
     @ResponseBody
-    public java.lang.Object queryTreeList(HttpServletResponse response){
+    public List<Tree> queryTreeList(HttpServletResponse response){
         List<Tree> treeList = treeService.queryTreeList();
         return treeList;
     }
